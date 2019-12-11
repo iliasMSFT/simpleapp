@@ -1,0 +1,6 @@
+[submodule "simpleapi"]
+	path = simpleapi
+	url = ./simpleapi
+[submodule "simpleweb"]
+	path = simpleweb
+	url = ./simpleweb

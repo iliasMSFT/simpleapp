@@ -21,4 +21,10 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 80
+        env:
+          - name: apiURL
+            valueFrom:
+              configMapKeyRef:
+                key: apiURL
+                name: simpleweb
 

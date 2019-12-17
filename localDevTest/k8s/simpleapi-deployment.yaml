@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: simpleapi
-        image: simpleapi:0.1
+        image: simpleapi:latest
+        imagePullPolicy: IfNotPresent
         resources:
           limits:
             memory: "128Mi"

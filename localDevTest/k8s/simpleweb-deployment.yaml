@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: simpleweb
-        image: simpleweb:0.2
+        image: simpleweb:latest
+        imagePullPolicy: IfNotPresent
         resources:
           limits:
             memory: "128Mi"

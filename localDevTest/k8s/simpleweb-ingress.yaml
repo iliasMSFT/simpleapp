@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: simpleweb
+spec:
+  rules:
+  - host: simpleweb.localhost
+    http:
+      paths:
+      - backend:
+          serviceName: simpleweb
+          servicePort: 80

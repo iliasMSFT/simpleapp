@@ -1,3 +1,9 @@
 config:
   apiURL: "simpleapi"
 replicaCount: 1
+image:
+  repository: "simpleweb"
+  tag: "0.6"
+service:
+  port: "80"
+  type: LoadBalancer

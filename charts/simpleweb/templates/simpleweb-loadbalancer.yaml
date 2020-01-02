@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: simpleweb
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
 spec:
   selector:
-    app: simpleweb
-  type: LoadBalancer
+    app: {{ .Release.Name }}-{{ .Chart.Name }}
+  type: {{ .Values.service.type }}
   ports:
-  - name: simpleweb-externalaccess
+  - name: {{ .Release.Name }}-{{ .Chart.Name }}-externalaccess
     port: 7000
-    targetPort: 80
+    targetPort: {{ .Values.service.port }}

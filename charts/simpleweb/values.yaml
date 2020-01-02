@@ -1,0 +1,3 @@
+config:
+  apiURL: "simpleapi"
+replicaCount: 1

@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: simpleapi
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
 spec:
   selector:
-    app: simpleapi
-  type: ClusterIP
+    app: {{ .Release.Name }}-{{ .Chart.Name }}
+  type: {{ .Values.service.type }}
   ports:
   - port: 80
-    targetPort: 80
+    targetPort: {{ .Values.service.port }}

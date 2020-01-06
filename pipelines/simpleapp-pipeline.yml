@@ -22,7 +22,7 @@ steps:
   displayName: 'create helm package for simpleweb'
   inputs:
     command: 'package'
-    chartPath: '/charts/simpleweb'
+    chartPath: $(Build.SourcesDirectory)/charts/simpleweb'
     updateDependency: true
 
 - script: |

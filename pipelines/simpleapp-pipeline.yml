@@ -22,8 +22,9 @@ steps:
   displayName: 'create helm package for simpleweb'
   inputs:
     command: 'package'
-    chartPath: $(Build.SourcesDirectory)/charts/simpleweb'
+    chartPath: '$(Build.SourcesDirectory)/charts/simpleweb'''
     updateDependency: true
+    save: false
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.

@@ -1,0 +1,60 @@
+az login
+az account list
+az account set -s "9cf3332a-a651-4ba7-81ee-65d3b8e0229a"
+
+
+$rgName = "simpleAppRG"
+$location = "eastus"
+$aksClusterName = "simpleAKS"
+$acrName = "simpleAppCr"
+
+az group create --location $location --name $rgName
+
+az acr create -n $acrName -g $rgName --sku Standard
+az acr update -n $acrName --admin-enabled true
+az acr credential show -n $acrName -g $rgName
+az acr login -n $acrName -g $rgName
+az acr list -g $rgName 
+#{
+#  "passwords": [
+#    {
+#      "name": "password",
+#      "value": "/79D=CURtNZ/TqeP85LonggAsshtg3YG"
+#    },
+#    {
+#      "name": "password2",
+#      "value": "7mdQAI+tjNaYCtqPQi1cAbj9XuqCunpJ"
+#    }
+#  ],
+#  "username": "simpleAppCr"
+#}
+
+$acrUsername = "simpleAppCr"
+$acrPassword = "/79D=CURtNZ/TqeP85LonggAsshtg3YG"
+$acrLoginServer = "simpleappcr.azurecr.io"
+
+docker login -u $acrUsername -p $acrPassword $acrLoginServer
+
+az ad sp create-for-rbac -n "simpleAppDeployer" --scopes "/subscriptions/9cf3332a-a651-4ba7-81ee-65d3b8e0229a/resourceGroups/simpleAppRG"
+
+#{
+#  "appId": "690c6656-4b5d-4042-b586-8698ae346955",
+#  "displayName": "simpleAppDeployer",
+#  "name": "http://simpleAppDeployer",
+#  "password": "430b5790-ed36-47a1-9208-e58c7459f8d4",
+#  "tenant": "22c6d25d-061b-4c5b-b35f-a6179f873e34"
+#}
+
+$servicePrincipal = "690c6656-4b5d-4042-b586-8698ae346955"
+$clientSecret = "430b5790-ed36-47a1-9208-e58c7459f8d4"
+
+
+az aks create --resource-group $rgName --name $aksClusterName --node-count 3 --enable-addons monitoring --service-principal $servicePrincipal --client-secret $clientSecret --attach-acr $acrName --generate-ssh-keys
+az aks get-credentials --resource-group $rgName --name $aksClusterName
+
+az acr login -n $acrName -g $rgName
+
+docker tag simpleweb:0.6 "$acrName.azurecr.io/simpleweb:0.6"
+docker push "$acrName.azurecr.io/simpleweb:0.6"
+docker tag simpleapi:0.6 "$acrName.azurecr.io/simpleapi:0.6" 
+docker push "$acrName.azurecr.io/simpleapi:0.6"

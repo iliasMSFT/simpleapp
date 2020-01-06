@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
-  repository: "simpleapi"
+  repository: "simpleappcr.azurecr.io/simpleapi"
   tag: "0.6"
 service:
   port: "80"

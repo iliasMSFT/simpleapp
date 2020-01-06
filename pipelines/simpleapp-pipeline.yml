@@ -21,11 +21,13 @@ steps:
   inputs:
     helmVersionToInstall: 'latest'
 
+
 - task: HelmDeploy@0
   displayName: 'create helm package for simpleweb'
   inputs:
     command: 'package'
-    chartPath: '$(Build.SourcesDirectory)/charts/simpleweb'''
+    chartPath: charts/simpleweb
+    destination: $(Build.ArtifactStagingDirectory)
     updateDependency: true
     save: false
 

@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: "simpleappcr.azurecr.io/simpleapi"
-  tag: "0.6"
+  tag: "289"
 service:
   port: "80"
   type: ClusterIP

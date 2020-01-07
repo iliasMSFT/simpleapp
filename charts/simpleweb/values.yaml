@@ -3,7 +3,7 @@ config:
 replicaCount: 1
 image:
   repository: "simpleappcr.azurecr.io/simpleweb"
-  tag: "0.6"
+  tag: "300"
 service:
   port: "80"
   type: LoadBalancer

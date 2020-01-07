@@ -1,6 +1,8 @@
 [submodule "simpleapi"]
 	path = simpleapi
 	url = ./simpleapi
+	ignore = dirty
 [submodule "simpleweb"]
 	path = simpleweb
 	url = ./simpleweb
+	ignore = dirty

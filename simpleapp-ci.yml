@@ -1,0 +1,41 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+resources:
+- repo: self
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  
+- task: HelmInstaller@1
+  displayName: 'Install Helm'
+  inputs:
+    helmVersionToInstall: 'latest'
+
+- task: HelmDeploy@0
+  displayName: 'create helm package for simpleweb'
+  inputs:
+    command: 'package'
+    chartPath: charts/simpleweb
+    destination: $(Build.ArtifactStagingDirectory)
+    updateDependency: true
+    save: false
+
+- task: PublishBuildArtifacts@1
+  displayName: 'publish simpleweb helm package for simpleweb as a pipeline artifact'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'

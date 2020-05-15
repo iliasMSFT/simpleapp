@@ -1,6 +1,6 @@
 [submodule "simpleapi"]
 	path = simpleapi
-	url = https://github.com/iliasMSFT/simpleapi.git
+	url = https://github.com/iliasjennane/simpleapi.git
 [submodule "simpleweb"]
 	path = simpleweb
-	url = https://github.com/iliasMSFT/simpleweb.git
+	url = https://github.com/iliasjennane/simpleweb.git

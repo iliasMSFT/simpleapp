@@ -1,0 +1,34 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+stages:
+- stage: 'Package'
+  displayName: 'Package the helm chart'
+  jobs:
+   - job: Build
+     steps:
+       - task: HelmInstaller@1
+         displayName: 'Install Helm'
+         inputs:
+           helmVersionToInstall: 'latest'
+
+       - task: HelmDeploy@0
+         displayName: 'create helm package for simpleweb'
+         inputs:
+           command: 'package'
+           chartPath: charts/simpleweb
+           destination: $(Build.ArtifactStagingDirectory)
+           updateDependency: true
+           save: false
+
+       - task: PublishBuildArtifacts@1
+         displayName: 'publish simpleweb helm package for simpleweb as a pipeline artifact'
+         inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: 'drop'
+          publishLocation: 'Container'
+
+
+

@@ -2,8 +2,8 @@ config:
   apiURL: "simpleapi"
 replicaCount: 1
 image:
-  repository: "iliasjsvcscr.azurecr.io/simpleweb"
-  tag: "0.1"
+  repository: "iliasjacr.azurecr.io/simpleweb"
+  tag: "latest"
 service:
   port: "80"
   type: LoadBalancer

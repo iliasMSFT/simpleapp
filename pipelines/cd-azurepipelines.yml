@@ -7,7 +7,7 @@ stages:
 - stage: 'Package'
   displayName: 'Package the helm chart'
   jobs:
-   - job: Build
+   - job: PackageHelmChart
      steps:
        - task: HelmInstaller@1
          displayName: 'Install Helm'
@@ -29,6 +29,17 @@ stages:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
           ArtifactName: 'drop'
           publishLocation: 'Container'
+- stage: 'DeployRing0'
+  displayName: 'Deploy simpleweb and simpleapi to Ring 0'
+  jobs:
+    - job: DeployHelmPackage
+      steps:
+        - task: HelmInstaller@1
+          displayName: Install Helm 
+          inputs:
+            helmVersionToInstall: 3.1.2
+        - task: HelmDeploy@0
+          displayName: Deploy simpleweb helm package
 
 
 

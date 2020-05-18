@@ -8,5 +8,5 @@ spec:
   type: {{ .Values.service.type }}
   ports:
   - name: {{ .Release.Name }}-{{ .Chart.Name }}-externalaccess
-    port: 7000
-    targetPort: {{ .Values.service.port }}
+    port: {{ .Values.service.port }}
+    targetPort: {{ .Values.service.targetPort }}

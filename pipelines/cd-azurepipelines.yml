@@ -52,7 +52,7 @@ stages:
             azureResourceGroup: iliasj-aksworkshop
             kubernetesCluster: iliasjaks
             namespace: simpleweb-ring0
-            chartPath: $(Agent.BuildDirectory)\*.tgz
+            chartPath: $(Agent.BuildDirectory)\papa.tgz
 - stage: 'DeployRing1'
   displayName: 'Deploy simpleweb and simpleapi to Ring 1'
   jobs:

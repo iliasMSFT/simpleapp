@@ -47,6 +47,7 @@ stages:
         - task: HelmDeploy@0
           displayName: Deploy simpleweb helm package
           inputs:
+            azureSubscription: cicdsubscription
             kubernetesCluster: cicdaks-simpleweb-dev
             chartPath: $(Agent.BuildDirectory)\*.tgz
 

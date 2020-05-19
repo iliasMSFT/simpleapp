@@ -48,33 +48,8 @@ stages:
         - task: HelmDeploy@0
           displayName: Deploy simpleweb helm package to Ring 0 aks namespace
           inputs:
-            azureSubscription: cicdsubscription
-            azureResourceGroup: iliasj-aksworkshop
-            kubernetesCluster: iliasjaks
-            namespace: simpleweb-ring0
-            chartPath: $(Agent.BuildDirectory)\papa.tgz
-- stage: 'DeployRing1'
-  displayName: 'Deploy simpleweb and simpleapi to Ring 1'
-  jobs:
-  - job: DeployHelmPackage
-    steps:
-      - task: DownloadBuildArtifacts@0
-        displayName: Download the latest helm package
-        inputs:
-          buildType: 'current'
-          downloadType: 'single'
-          artifactName: 'drop'
-          downloadPath: '$(System.ArtifactsDirectory)'
-      - task: HelmInstaller@1
-        displayName: Install Helm 
-        inputs:
-          helmVersionToInstall: 3.1.2
-      - task: HelmDeploy@0
-        displayName: Deploy simpleweb helm package to Ring 0 aks namespace
-        inputs:
-          azureSubscription: cicdsubscription
-          azureResourceGroup: iliasj-aksworkshop
-          kubernetesCluster: iliasjaks
-          namespace: simpleweb-ring1
-          chartPath: $(Agent.BuildDirectory)\*.tgz
-          
+            connectionType: Kubernetes Service Connection
+            kubernetesServiceEndpoint: aks-dev
+            command: upgrade
+            install: true
+            chartPath: $(Agent.BuildDirectory)/*.tgz

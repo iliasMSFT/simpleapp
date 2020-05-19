@@ -52,5 +52,4 @@ stages:
             kubernetesServiceEndpoint: aks-dev
             command: upgrade
             install: true
-            chartPath: $(Agent.BuildDirectory)
-            chartName: simpleweb-0.1.0.tgz
+            chartName: $(Agent.BuildDirectory)/simpleweb-0.1.0.tgz

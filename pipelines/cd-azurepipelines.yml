@@ -34,12 +34,22 @@ stages:
   jobs:
     - job: DeployHelmPackage
       steps:
+        - task: DownloadBuildArtifacts@0
+          inputs:
+            buildType: 'current'
+            downloadType: 'single'
+            artifactName: 'drop'
+            downloadPath: '$(System.ArtifactsDirectory)'
         - task: HelmInstaller@1
           displayName: Install Helm 
           inputs:
             helmVersionToInstall: 3.1.2
         - task: HelmDeploy@0
           displayName: Deploy simpleweb helm package
+          inputs:
+            kubernetesCluster: cicdaks-simpleweb-dev
+            chartPath: $(Agent.BuildDirectory)\*.tgz
+
 
 
 

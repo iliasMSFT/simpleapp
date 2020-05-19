@@ -34,6 +34,13 @@ stages:
   jobs:
     - job: DeployHelmPackage
       steps:
+        - task: DownloadBuildArtifacts@0
+          displayName: Download the latest helm package
+          inputs:
+            buildType: 'current'
+            downloadType: 'single'
+            artifactName: 'drop'
+            downloadPath: '$(System.ArtifactsDirectory)'
         - task: HelmInstaller@1
           displayName: Install Helm 
           inputs:
@@ -45,4 +52,4 @@ stages:
             kubernetesServiceEndpoint: aks-dev
             command: upgrade
             install: true
-            chartName: $(Build.ArtifactStagingDirectory)/simpleweb-0.1.0.tgz
+            chartName: $(System.ArtifactsDirectory)/drop/simpleweb-0.1.0.tgz

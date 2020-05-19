@@ -18,6 +18,8 @@ stages:
          displayName: 'create helm package for simpleweb'
          inputs:
            command: 'package'
+           chartName: simpleweb
+           chartType: Name
            chartPath: charts/simpleweb
            destination: $(Build.ArtifactStagingDirectory)
            updateDependency: true
@@ -52,4 +54,4 @@ stages:
             kubernetesServiceEndpoint: aks-dev
             command: upgrade
             install: true
-            chartPath: $(Agent.BuildDirectory)/*.tgz
+            chartPath: $(Agent.BuildDirectory)/simpleweb.tgz

@@ -48,7 +48,9 @@ stages:
           displayName: Deploy simpleweb helm package
           inputs:
             azureSubscription: cicdsubscription
-            kubernetesCluster: cicdaks-simpleweb-dev
+            azureResourceGroup: iliasj-aksworkshop
+            kubernetesCluster: iliasjaks
+            namespace: simpleweb-dev
             chartPath: $(Agent.BuildDirectory)\*.tgz
 
 

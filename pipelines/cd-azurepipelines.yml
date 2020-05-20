@@ -55,6 +55,6 @@ stages:
             command: upgrade
             install: true
             chartName: $(System.ArtifactsDirectory)/drop/simpleweb-0.1.0.tgz
-            releaseName: simpleapp-ring0
+            releaseName: simpleapp
 
             

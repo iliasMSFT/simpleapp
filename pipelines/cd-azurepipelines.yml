@@ -47,6 +47,7 @@ stages:
             helmVersionToInstall: 3.1.2
         - task: HelmDeploy@0
           displayName: Deploy simpleweb helm package to Ring 0 aks namespace
+          timeoutInMinutes: 5
           inputs:
             connectionType: Kubernetes Service Connection
             kubernetesServiceEndpoint: simpleweb-ring0-aks
@@ -55,4 +56,5 @@ stages:
             install: true
             chartName: $(System.ArtifactsDirectory)/drop/simpleweb-0.1.0.tgz
             releaseName: simpleweb-ring0
+
             

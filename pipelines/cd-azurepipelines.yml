@@ -49,7 +49,7 @@ stages:
           displayName: Deploy simpleweb helm package to Ring 0 aks namespace
           inputs:
             connectionType: Kubernetes Service Connection
-            kubernetesServiceEndpoint: aks-dev
+            kubernetesServiceEndpoint: simpleweb-ring0-aks
             namespace: simpleweb-ring0
             command: upgrade
             install: true

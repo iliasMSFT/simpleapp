@@ -50,6 +50,7 @@ stages:
           inputs:
             connectionType: Kubernetes Service Connection
             kubernetesServiceEndpoint: aks-dev
+            namespace: simpleweb-ring0
             command: upgrade
             install: true
             chartName: $(System.ArtifactsDirectory)/drop/simpleweb-0.1.0.tgz

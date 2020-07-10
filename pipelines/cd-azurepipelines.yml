@@ -50,7 +50,7 @@ stages:
           timeoutInMinutes: 5
           inputs:
             connectionType: Kubernetes Service Connection
-            kubernetesServiceEndpoint: eyring0
+            kubernetesServiceEndpoint: simpleappring0
             namespace: ring0
             command: upgrade
             install: true
@@ -77,8 +77,8 @@ stages:
           timeoutInMinutes: 5
           inputs:
             connectionType: Kubernetes Service Connection
-            kubernetesServiceEndpoint: eyring1
-            namespace: ring0
+            kubernetesServiceEndpoint: simpleappring1
+            namespace: ring1
             command: upgrade
             install: true
             chartName: $(System.ArtifactsDirectory)/drop/simpleweb-0.1.0.tgz
